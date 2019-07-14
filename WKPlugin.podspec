@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "WKPlugin"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "WKPlugin of wallet"
 
   # This description is used to generate tags and improve search results.
@@ -82,6 +82,7 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/Doggylin/WKPlugin.git", :tag => "#{spec.version}" }
 
+  spec.vendored_frameworks  =  "WalletPluginFramework/Wiccwallet.framework"
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -91,8 +92,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-
-  spec.source_files  = "WalletPluginFramework"
+  spec.source_files  = "WKPlugin", "WalletPluginFramework/**/*.{h,m}"
   #spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
