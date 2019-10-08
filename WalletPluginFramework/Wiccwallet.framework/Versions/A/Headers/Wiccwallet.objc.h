@@ -10,15 +10,109 @@
 #include "Universe.objc.h"
 
 
+@class WiccwalletAssetIssueTxParam;
+@class WiccwalletAssetModel;
+@class WiccwalletAssetModels;
+@class WiccwalletAssetUpdateTxParam;
 @class WiccwalletCallContractTxParam;
+@class WiccwalletCdpLiquidateTxParam;
+@class WiccwalletCdpRedeemTxParam;
+@class WiccwalletCdpStakeTxParam;
 @class WiccwalletCommonTxParam;
 @class WiccwalletDelegateTxParam;
+@class WiccwalletDest;
+@class WiccwalletDestArr;
+@class WiccwalletDexCancelTxParam;
+@class WiccwalletDexLimitTxParam;
+@class WiccwalletDexMarketTxParam;
 @class WiccwalletMnemonic;
 @class WiccwalletOperVoteFund;
 @class WiccwalletOperVoteFunds;
 @class WiccwalletRegisterAccountTxParam;
 @class WiccwalletRegisterContractTxParam;
 @class WiccwalletSignMessageParam;
+@class WiccwalletUCoinContractTxParam;
+@class WiccwalletUCoinRegisterContractTxParam;
+@class WiccwalletUCoinTransferTxParam;
+
+@interface WiccwalletAssetIssueTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (NSString*)assetSymbol;
+- (void)setAssetSymbol:(NSString*)v;
+- (NSString*)assetName;
+- (void)setAssetName:(NSString*)v;
+- (int64_t)assetTotal;
+- (void)setAssetTotal:(int64_t)v;
+- (NSString*)assetOwner;
+- (void)setAssetOwner:(NSString*)v;
+- (BOOL)minTable;
+- (void)setMinTable:(BOOL)v;
+@end
+
+/**
+ * cdp stake Asset
+ */
+@interface WiccwalletAssetModel : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)assetAmount;
+- (void)setAssetAmount:(int64_t)v;
+- (NSString*)assetSymbol;
+- (void)setAssetSymbol:(NSString*)v;
+@end
+
+/**
+ * cdp stake asset list
+ */
+@interface WiccwalletAssetModels : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (void)add:(WiccwalletAssetModel*)model;
+@end
+
+@interface WiccwalletAssetUpdateTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (long)updateType;
+- (void)setUpdateType:(long)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (NSString*)assetSymbol;
+- (void)setAssetSymbol:(NSString*)v;
+- (NSString*)assetName;
+- (void)setAssetName:(NSString*)v;
+- (int64_t)assetTotal;
+- (void)setAssetTotal:(int64_t)v;
+- (NSString*)assetOwner;
+- (void)setAssetOwner:(NSString*)v;
+@end
 
 /**
  * CallContractTxParam param of the call contract tx
@@ -41,6 +135,91 @@
 - (void)setValues:(int64_t)v;
 - (NSString*)contractHex;
 - (void)setContractHex:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+@end
+
+/**
+ * Cdp Redeem param of the tx
+ */
+@interface WiccwalletCdpLiquidateTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (NSString*)cdpTxid;
+- (void)setCdpTxid:(NSString*)v;
+- (int64_t)scoinsLiquidate;
+- (void)setScoinsLiquidate:(int64_t)v;
+- (NSString*)assetSymbol;
+- (void)setAssetSymbol:(NSString*)v;
+@end
+
+/**
+ * Cdp Redeem param of the tx
+ */
+@interface WiccwalletCdpRedeemTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (NSString*)cdpTxid;
+- (void)setCdpTxid:(NSString*)v;
+- (int64_t)scoinsToRepay;
+- (void)setScoinsToRepay:(int64_t)v;
+- (WiccwalletAssetModels*)assets;
+- (void)setAssets:(WiccwalletAssetModels*)v;
+@end
+
+/**
+ * Cdp Stake param of the tx
+ */
+@interface WiccwalletCdpStakeTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (NSString*)cdpTxid;
+- (void)setCdpTxid:(NSString*)v;
+- (NSString*)scoinSymbol;
+- (void)setScoinSymbol:(NSString*)v;
+- (int64_t)scoinMint;
+- (void)setScoinMint:(int64_t)v;
+- (WiccwalletAssetModels*)assets;
+- (void)setAssets:(WiccwalletAssetModels*)v;
 @end
 
 @interface WiccwalletCommonTxParam : NSObject <goSeqRefInterface> {
@@ -59,6 +238,10 @@
 - (void)setValues:(int64_t)v;
 - (int64_t)fees;
 - (void)setFees:(int64_t)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)memo;
+- (void)setMemo:(NSString*)v;
 @end
 
 /**
@@ -78,6 +261,107 @@
 - (void)setFees:(int64_t)v;
 - (WiccwalletOperVoteFunds*)votes;
 - (void)setVotes:(WiccwalletOperVoteFunds*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+@end
+
+@interface WiccwalletDest : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (NSString*)coinSymbol;
+- (void)setCoinSymbol:(NSString*)v;
+- (int64_t)coinAmount;
+- (void)setCoinAmount:(int64_t)v;
+- (NSString*)destAddr;
+- (void)setDestAddr:(NSString*)v;
+@end
+
+@interface WiccwalletDestArr : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (void)add:(WiccwalletDest*)dest;
+@end
+
+@interface WiccwalletDexCancelTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (NSString*)dexTxid;
+- (void)setDexTxid:(NSString*)v;
+@end
+
+/**
+ * Dex Sell Limit param of the tx
+ */
+@interface WiccwalletDexLimitTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (NSString*)assetSymbol;
+- (void)setAssetSymbol:(NSString*)v;
+- (NSString*)coinSymbol;
+- (void)setCoinSymbol:(NSString*)v;
+- (int64_t)assetAmount;
+- (void)setAssetAmount:(int64_t)v;
+- (int64_t)price;
+- (void)setPrice:(int64_t)v;
+@end
+
+/**
+ * Dex market Sell param of the tx
+ */
+@interface WiccwalletDexMarketTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (NSString*)assetSymbol;
+- (void)setAssetSymbol:(NSString*)v;
+- (NSString*)coinSymbol;
+- (void)setCoinSymbol:(NSString*)v;
+- (int64_t)assetAmount;
+- (void)setAssetAmount:(int64_t)v;
 @end
 
 @interface WiccwalletMnemonic : NSObject <goSeqRefInterface> {
@@ -194,6 +478,83 @@ voteValue add fund if >= 0, minus fund if < 0
 - (void)setSignMessage:(NSString*)v;
 @end
 
+/**
+ * UCoin Contract param of the tx
+ */
+@interface WiccwalletUCoinContractTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (NSString*)appId;
+- (void)setAppId:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (int64_t)coinAmount;
+- (void)setCoinAmount:(int64_t)v;
+- (NSString*)contractHex;
+- (void)setContractHex:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (NSString*)coinSymbol;
+- (void)setCoinSymbol:(NSString*)v;
+@end
+
+/**
+ * RegisterUCoinContractTxParam param of the register contract tx
+ */
+@interface WiccwalletUCoinRegisterContractTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (NSData*)script;
+- (void)setScript:(NSData*)v;
+- (NSString*)description;
+- (void)setDescription:(NSString*)v;
+@end
+
+/**
+ * UCoin Transfer param of the tx
+ */
+@interface WiccwalletUCoinTransferTxParam : NSObject <goSeqRefInterface> {
+}
+@property(strong, readonly) id _ref;
+
+- (instancetype)initWithRef:(id)ref;
+- (instancetype)init;
+- (int64_t)validHeight;
+- (void)setValidHeight:(int64_t)v;
+- (NSString*)srcRegId;
+- (void)setSrcRegId:(NSString*)v;
+- (NSString*)pubKey;
+- (void)setPubKey:(NSString*)v;
+- (NSString*)feeSymbol;
+- (void)setFeeSymbol:(NSString*)v;
+- (int64_t)fees;
+- (void)setFees:(int64_t)v;
+- (WiccwalletDestArr*)dests;
+- (void)setDests:(WiccwalletDestArr*)v;
+- (NSString*)memo;
+- (void)setMemo:(NSString*)v;
+@end
+
 FOUNDATION_EXPORT const int64_t WiccwalletCONTRACT_SCRIPT_DESC_MAX_SIZE;
 FOUNDATION_EXPORT const int64_t WiccwalletCONTRACT_SCRIPT_MAX_SIZE;
 /**
@@ -219,6 +580,7 @@ FOUNDATION_EXPORT NSString* const WiccwalletJAPANESE;
 FOUNDATION_EXPORT NSString* const WiccwalletKOREAN;
 FOUNDATION_EXPORT const int64_t WiccwalletMAX_MONEY;
 FOUNDATION_EXPORT const int64_t WiccwalletMIN_TX_FEE;
+FOUNDATION_EXPORT const int64_t WiccwalletMIN_TX_FEE_CDP;
 FOUNDATION_EXPORT const int64_t WiccwalletMONEY_PER_COIN;
 /**
  * List Mnemonic language support
@@ -235,6 +597,48 @@ FOUNDATION_EXPORT const long WiccwalletWAYKI_MAINTNET;
 FOUNDATION_EXPORT const long WiccwalletWAYKI_TESTNET;
 
 @interface Wiccwallet : NSObject
+/**
+ * errors
+ */
++ (NSError*) erR_ASK_PRICE;
++ (void) setERR_ASK_PRICE:(NSError*)v;
+
+/**
+ * errors
+ */
++ (NSError*) erR_ASSET_NAME_ERROR;
++ (void) setERR_ASSET_NAME_ERROR:(NSError*)v;
+
+/**
+ * errors
+ */
++ (NSError*) erR_ASSET_UPDATE_OWNER_ERROR;
++ (void) setERR_ASSET_UPDATE_OWNER_ERROR:(NSError*)v;
+
+/**
+ * errors
+ */
++ (NSError*) erR_ASSET_UPDATE_TYPE_ERROR;
++ (void) setERR_ASSET_UPDATE_TYPE_ERROR:(NSError*)v;
+
+/**
+ * errors
+ */
++ (NSError*) erR_CDP_STAKE_NUMBER;
++ (void) setERR_CDP_STAKE_NUMBER:(NSError*)v;
+
+/**
+ * errors
+ */
++ (NSError*) erR_CDP_TX_HASH;
++ (void) setERR_CDP_TX_HASH:(NSError*)v;
+
+/**
+ * errors
+ */
++ (NSError*) erR_COIN_TYPE;
++ (void) setERR_COIN_TYPE:(NSError*)v;
+
 /**
  * errors
  */
@@ -337,11 +741,29 @@ FOUNDATION_EXPORT const long WiccwalletWAYKI_TESTNET;
 + (NSError*) erR_SIGNATURE_ERROR;
 + (void) setERR_SIGNATURE_ERROR:(NSError*)v;
 
+/**
+ * errors
+ */
++ (NSError*) erR_SYMBOL_ERROR;
++ (void) setERR_SYMBOL_ERROR:(NSError*)v;
+
+/**
+ * errors
+ */
++ (NSError*) erR_TOTAl_SUPPLY_ERROR;
++ (void) setERR_TOTAl_SUPPLY_ERROR:(NSError*)v;
+
+/**
+ * errors
+ */
++ (NSError*) erR_USER_PUBLICKEY;
++ (void) setERR_USER_PUBLICKEY:(NSError*)v;
+
 @end
 
-FOUNDATION_EXPORT BOOL WiccwalletCheckAddress(NSString* address, long netType, BOOL* ret0_, NSError** error);
-
 FOUNDATION_EXPORT BOOL WiccwalletCheckPrivateKey(NSString* privateKey, long netType, BOOL* ret0_, NSError** error);
+
+FOUNDATION_EXPORT BOOL WiccwalletCheckWalletAddress(NSString* address, long netType, BOOL* ret0_, NSError** error);
 
 /**
  * Generate Mnemonics string, saprated by space, default language is EN(english)
@@ -352,19 +774,28 @@ FOUNDATION_EXPORT NSString* WiccwalletGenerateMnemonics(void);
  * 助记词转换地址
 netType: WAYKI_TESTNET or WAYKI_MAINTNET
  */
-FOUNDATION_EXPORT NSString* WiccwalletGetAddressFromMnemonic(NSString* wordsStr, long netType, NSError** error);
+FOUNDATION_EXPORT NSString* WiccwalletGetAddressFromMnemonic(NSString* words, long netType, NSError** error);
 
 /**
  * GetAddressFromPrivateKey get address from private key
 netType: WAYKI_TESTNET or WAYKI_MAINTNET
  */
-FOUNDATION_EXPORT NSString* WiccwalletGetAddressFromPrivateKey(NSString* privateKey, long netType, NSError** error);
+FOUNDATION_EXPORT NSString* WiccwalletGetAddressFromPrivateKey(NSString* privateKey, long netType);
 
 /**
  * 助记词转私钥
 netType: WAYKI_TESTNET or WAYKI_MAINTNET
  */
-FOUNDATION_EXPORT NSString* WiccwalletGetPrivateKeyFromMnemonic(NSString* wordsStr, long netType, NSError** error);
+FOUNDATION_EXPORT NSString* WiccwalletGetPrivateKeyFromMnemonic(NSString* words, long netType, NSError** error);
+
+/**
+ * get publickey from privatekey
+ */
+FOUNDATION_EXPORT NSString* WiccwalletGetPubKeyFromPrivateKey(NSString* privKey, NSError** error);
+
+FOUNDATION_EXPORT WiccwalletAssetModels* WiccwalletNewCdpAssets(void);
+
+FOUNDATION_EXPORT WiccwalletDestArr* WiccwalletNewDestArr(void);
 
 FOUNDATION_EXPORT WiccwalletMnemonic* WiccwalletNewMnemonicWithDefaultOption(void);
 
@@ -376,10 +807,40 @@ FOUNDATION_EXPORT WiccwalletMnemonic* WiccwalletNewMnemonicWithLanguage(NSString
 FOUNDATION_EXPORT WiccwalletOperVoteFunds* WiccwalletNewOperVoteFunds(void);
 
 /**
+ * SignAssetIssueTx sign
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignAssetCreateTx(NSString* privateKey, WiccwalletAssetIssueTxParam* param, NSError** error);
+
+/**
+ * SignAssetUpdateTx sign
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignAssetUpdateTx(NSString* privateKey, WiccwalletAssetUpdateTxParam* param, NSError** error);
+
+/**
  * SignCallContractTx sign for call contract tx
 returns the signature hex string and nil error, or returns empty string and the error if it has error
  */
 FOUNDATION_EXPORT NSString* WiccwalletSignCallContractTx(NSString* privateKey, WiccwalletCallContractTxParam* param, NSError** error);
+
+/**
+ * SignCdpLiquidateTx sign for liquidate a cdp tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignCdpLiquidateTx(NSString* privateKey, WiccwalletCdpLiquidateTxParam* param, NSError** error);
+
+/**
+ * SignCdpRedeemTx sign for redeem a cdp tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignCdpRedeemTx(NSString* privateKey, WiccwalletCdpRedeemTxParam* param, NSError** error);
+
+/**
+ * SignCdpStakeTx sign for create a cdp tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignCdpStakeTx(NSString* privateKey, WiccwalletCdpStakeTxParam* param, NSError** error);
 
 /**
  * SignCommonTx sign for common tx
@@ -393,6 +854,39 @@ returns the signature hex string and nil error, or returns empty string and the 
  */
 FOUNDATION_EXPORT NSString* WiccwalletSignDelegateTx(NSString* privateKey, WiccwalletDelegateTxParam* param, NSError** error);
 
+/**
+ * SignDexBuyLimitTx sign for dex buy limit Price tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignDexBuyLimitTx(NSString* privateKey, WiccwalletDexLimitTxParam* param, NSError** error);
+
+/**
+ * SignDexMarketBuyTx sign for cancel dex tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignDexCancelTx(NSString* privateKey, WiccwalletDexCancelTxParam* param, NSError** error);
+
+/**
+ * SignDexMarketBuyTx sign for dex buy market price tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignDexMarketBuyTx(NSString* privateKey, WiccwalletDexMarketTxParam* param, NSError** error);
+
+/**
+ * SignDexMarketSellTx sign for dex sell market price tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignDexMarketSellTx(NSString* privateKey, WiccwalletDexMarketTxParam* param, NSError** error);
+
+/**
+ * SignDexSellLimitTx sign for dex sell limit price tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignDexSellLimitTx(NSString* privateKey, WiccwalletDexLimitTxParam* param, NSError** error);
+
+/**
+ * Sign message by private Key
+ */
 FOUNDATION_EXPORT WiccwalletSignMessageParam* WiccwalletSignMessage(NSString* privateKey, NSString* message, NSError** error);
 
 /**
@@ -406,5 +900,23 @@ FOUNDATION_EXPORT NSString* WiccwalletSignRegisterAccountTx(NSString* privateKey
 returns the signature hex string and nil error, or returns empty string and the error if it has error
  */
 FOUNDATION_EXPORT NSString* WiccwalletSignRegisterContractTx(NSString* privateKey, WiccwalletRegisterContractTxParam* param, NSError** error);
+
+/**
+ * SignUCoinCallContractTx sign for call contract tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignUCoinCallContractTx(NSString* privateKey, WiccwalletUCoinContractTxParam* param, NSError** error);
+
+/**
+ * SignUCoinRegisterContractTx sign for call register contract tx
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignUCoinRegisterContractTx(NSString* privateKey, WiccwalletUCoinRegisterContractTxParam* param, NSError** error);
+
+/**
+ * SignUCoinTransferTx sign for Multi-currency transfer
+returns the signature hex string and nil error, or returns empty string and the error if it has error
+ */
+FOUNDATION_EXPORT NSString* WiccwalletSignUCoinTransferTx(NSString* privateKey, WiccwalletUCoinTransferTxParam* param, NSError** error);
 
 #endif
